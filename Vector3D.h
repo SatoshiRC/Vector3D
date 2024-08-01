@@ -1,8 +1,9 @@
-#include <array>
-#include <cmath>
-
 #ifndef __VECTOR3D_H__
 #define __VECTOR3D_H__
+
+#include <array>
+#include <cmath>
+#include <ostream>
 
 template<class T>
 struct Vector3D : public std::array<T,3>{
@@ -20,6 +21,63 @@ struct Vector3D : public std::array<T,3>{
         }
         return std::sqrt(norm);
     }
+    constexpr float norm(){
+		float norm = 0;
+		for(auto &it:*this){
+			norm += square(it);
+		}
+		return std::sqrt(norm);
+	}
+
+    Vector3D<double> operator/(double arg){
+    	Vector3D<double> res;
+    	for(uint8_t n=0; n<3; n++){
+    		res[n] = this->at(n) / arg;
+    	}
+    	return res;
+    }
+    Vector3D<T> operator*(float arg){
+		Vector3D<T> res;
+		for(uint8_t n=0; n<3; n++){
+			res[n] = this->at(n) * arg;
+		}
+		return res;
+	}
+
+    Vector3D<T> operator*(Vector3D<T> arg){
+    	Vector3D<T> res;
+    	for(uint8_t n=0; n<3; n++){
+    		res[n] = this->at(n) * arg[n];
+    	}
+    	return res;
+    }
+
+    Vector3D<double> operator+(Vector3D<double> arg){
+    	Vector3D<double> res;
+    	for(uint8_t n=0; n<3; n++){
+    		res[n] = this->at(n) + arg[n];
+    	}
+    	return res;
+    }
+
+
+    Vector3D<double> operator-(Vector3D<double> arg){
+    	Vector3D<T> res;
+    	for(uint8_t n=0; n<3; n++){
+    		res[n] = this->at(n) - arg[n];
+    	}
+    	return res;
+    }
+
+    template<typename __T>
+    operator Vector3D<__T>(){
+    	Vector3D<__T> res;
+    	for(uint8_t n=0; n<3; n++){
+    		res[n] = (__T)this->at(n);
+    	}
+    	return res;
+    }
+
 private:
     inline T square(T arg){
         return arg * arg;
