@@ -4,6 +4,7 @@
 #include <array>
 #include <cmath>
 #include <ostream>
+#include <string>
 
 template<class T>
 struct Vector3D : public std::array<T,3>{
@@ -77,6 +78,22 @@ struct Vector3D : public std::array<T,3>{
     	}
     	return res;
     }
+
+    std::string string(){
+    	std::string res;
+    	res += std::to_string(int16_t(this->at(0)*180/std::numbers::pi))+", ";
+    	res += std::to_string(int16_t(this->at(1)*180/std::numbers::pi))+", ";
+    	res += std::to_string(int16_t(this->at(2)*180/std::numbers::pi));
+    	return res;
+    }
+
+    std::string string2(){
+		std::string res;
+		res += std::to_string(int16_t(this->at(0)*100))+", ";
+		res += std::to_string(int16_t(this->at(1)*100))+", ";
+		res += std::to_string(int16_t(this->at(2)*100));
+		return res;
+	}
 
 private:
     inline T square(T arg){
