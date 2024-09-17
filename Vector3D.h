@@ -30,6 +30,26 @@ struct Vector3D : public std::array<T,3>{
 		return std::sqrt(norm);
 	}
 
+    Vector3D<T> outerProduct(Vector3D<T> a, Vector3D<T> b){
+    	Vector3D<T> res;
+
+    	res[0] = a[1]*b[2] - a[2]*b[1];
+    	res[1] = a[2]*b[0] - a[0]*b[2];
+    	res[2] = a[0]*b[1] - a[1]*b[0];
+
+    	return res;
+    }
+
+    Vector3D<T> outerProduct(Vector3D<T> arg){
+    	Vector3D<T> res;
+
+    	res[0] = this->at(1)*arg[2] - this->at(2)*arg[1];
+    	res[1] = this->at(2)*arg[0] - this->at(0)*arg[2];
+    	res[2] = this->at(0)*arg[1] - this->at(1)*arg[0];
+
+    	return res;
+    }
+
     Vector3D<double> operator/(double arg){
     	Vector3D<double> res;
     	for(uint8_t n=0; n<3; n++){
