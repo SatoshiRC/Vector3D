@@ -90,6 +90,12 @@ struct Vector3D : public std::array<T,3>{
     	return res;
     }
 
+    void operator=(std::array<T,3> arg){
+    	for(uint8_t n=0; n<3; n++){
+    		this->at(n) = arg[n];
+    	}
+    }
+
     template<typename __T>
     operator Vector3D<__T>(){
     	Vector3D<__T> res;
