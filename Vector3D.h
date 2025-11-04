@@ -8,6 +8,12 @@
 
 template<class T>
 struct Vector3D : public std::array<T,3>{
+	Vector3D<T>() = default;
+	
+	Vector3D<T>(std::array<T,3> value){
+		this->swap(value);
+	}
+
     void normalize(){
         float norm = getNorm();
         for(auto &it:*this){
