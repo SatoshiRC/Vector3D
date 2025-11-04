@@ -1,6 +1,6 @@
 #ifndef __VECTOR3D_H__
 #define __VECTOR3D_H__
-
+#include <cstdint>
 #include <array>
 #include <cmath>
 #include <ostream>
